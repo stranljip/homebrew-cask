@@ -1,12 +1,12 @@
-cask 'jubler' do
-  version '7.0.0-alpha1'
-  sha256 '27247aca18009d1f42531b6059d2a7418795b1fdda515a560562cfa08a670379'
+cask "jubler" do
+  version "7.0.3"
+  sha256 "1165706840cdff7ed729d3737e9f3540e5d0216c0ef4fe506e80bbddfdce572e"
 
-  # github.com/teras/Jubler was verified as official when first introduced to the cask
-  url "https://github.com/teras/Jubler/releases/download/v#{version}/Jubler-#{version}.1.dmg"
-  appcast 'https://github.com/teras/Jubler/releases.atom'
-  name 'Jubler'
-  homepage 'https://www.jubler.org/'
+  url "https://github.com/teras/Jubler/releases/download/v#{version}/Jubler-#{version}.dmg",
+      verified: "github.com/teras/Jubler/"
+  name "Jubler"
+  desc "Subtitle editor"
+  homepage "https://www.jubler.org/"
 
-  app 'Jubler.app'
+  app "Jubler.app"
 end

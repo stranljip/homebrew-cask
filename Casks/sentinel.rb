@@ -1,11 +1,16 @@
-cask 'sentinel' do
-  version '0.15.1'
-  sha256 '235205161ed2ab38e7795de7d709f49755faf98ec5c9d161dbd4a46477119c27'
+cask "sentinel" do
+  version "0.18.1"
+  sha256 "3b4837e777c934a4e42fa7491e5aaca238c1670220bb6563be026733fddab200"
 
   url "https://releases.hashicorp.com/sentinel/#{version}/sentinel_#{version}_darwin_amd64.zip"
-  appcast 'https://docs.hashicorp.com/sentinel/downloads/'
-  name 'Sentinel'
-  homepage 'https://docs.hashicorp.com/sentinel/'
+  name "Sentinel"
+  desc "Language and framework for policy as code"
+  homepage "https://docs.hashicorp.com/sentinel"
 
-  binary 'sentinel'
+  livecheck do
+    url "https://docs.hashicorp.com/sentinel/downloads"
+    regex(%r{href=.*?/sentinel[._-]?v?(\d+(?:\.\d+)+)[._-]darwin[._-]amd64\.zip}i)
+  end
+
+  binary "sentinel"
 end

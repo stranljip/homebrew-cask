@@ -1,12 +1,20 @@
-cask 'freeplane' do
-  version '1.8.0'
-  sha256 '639b3e0e0bc60f3b6e180a0a29f8a0fa6fc02b55332dde2c7d2647f91a618a86'
+cask "freeplane" do
+  version "1.8.11"
+  sha256 "5f558640e8811c0d4b515dfc67c4d9ef5d877dfb3b7c88a3578d97001f6b337a"
 
-  # downloads.sourceforge.net/freeplane was verified as official when first introduced to the cask
-  url "https://downloads.sourceforge.net/freeplane/freeplane%20stable/Freeplane-#{version}.dmg"
-  appcast 'https://sourceforge.net/projects/freeplane/rss?path=/freeplane%20stable'
-  name 'Freeplane'
-  homepage 'https://freeplane.sourceforge.io/'
+  url "https://downloads.sourceforge.net/freeplane/freeplane%20stable/Freeplane-#{version}.dmg",
+      verified: "downloads.sourceforge.net/freeplane/"
+  name "Freeplane"
+  desc "Mind mapping and knowledge management software"
+  homepage "https://freeplane.sourceforge.io/"
 
-  app 'Freeplane.app'
+  livecheck do
+    url "https://sourceforge.net/projects/freeplane/rss?path=/freeplane%20stable"
+    strategy :page_match
+    regex(%r{stable/Freeplane[._-](\d+(?:\.\d+)+)\.dmg}i)
+  end
+
+  app "Freeplane.app"
+
+  zap trash: "~/Library/Saved Application State/org.freeplane.launcher.savedState"
 end

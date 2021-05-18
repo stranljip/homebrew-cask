@@ -1,13 +1,19 @@
-cask 'jamf-migrator' do
-  version '5.2.0'
-  sha256 '548bc64e1b3d04594289df6ad8db08b3d19d0a80e0ea236fbb1e213c180bb5b0'
+cask "jamf-migrator" do
+  version "5.8.3"
+  sha256 :no_check
 
-  url 'https://github.com/jamf/JamfMigrator/releases/download/current/jamf-migrator.zip'
-  appcast 'https://github.com/jamf/JamfMigrator/releases.atom'
-  name 'JamfMigrator'
-  homepage 'https://github.com/jamf/JamfMigrator'
+  url "https://github.com/jamf/JamfMigrator/releases/download/current/jamf-migrator.zip"
+  name "JamfMigrator"
+  desc "Tool to migrate data granularly between Jamf Pro servers"
+  homepage "https://github.com/jamf/JamfMigrator"
 
-  depends_on macos: '>= :sierra'
+  livecheck do
+    url :url
+    strategy :github_latest
+    regex(/jamf-migrator\s+v(\d+(?:\.\d+)*)/i)
+  end
 
-  app 'jamf-migrator.app'
+  depends_on macos: ">= :sierra"
+
+  app "jamf-migrator.app"
 end

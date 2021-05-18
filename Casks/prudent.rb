@@ -1,13 +1,12 @@
-cask 'prudent' do
-  version '79.0.3945.88,20'
-  sha256 'e59778c5683cc2b648d962365f5879030f9a467f02b4d6d4bb6df2975d5af361'
+cask "prudent" do
+  version "26"
+  sha256 "3dc4a1e65e2209cd3bc9a8c08c886ab33c78d40b85bed16068eac51b6c4cc9c7"
 
-  # github.com/PrudentMe/main was verified as official when first introduced to the cask
-  url "https://github.com/PrudentMe/main/releases/download/#{version.after_comma}/Prudent.zip"
-  appcast 'https://github.com/PrudentMe/main/releases.atom',
-          configuration: version.after_comma
-  name 'Prudent'
-  homepage 'https://prudent.me/'
+  url "https://github.com/PrudentMe/main/releases/download/#{version}/Prudent.zip",
+      verified: "github.com/PrudentMe/main/"
+  name "Prudent"
+  desc "Integrated environment for your personal and family ledger"
+  homepage "https://prudent.me/"
 
-  app 'Prudent.app'
+  app "Prudent.app"
 end

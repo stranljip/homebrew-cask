@@ -1,11 +1,26 @@
-cask 'noxappplayer' do
-  version '2.0.0.0,0117'
-  sha256 '489a57f1399bf8a026abd5c7a802ffeb5024753534dfa9afbe48ba300bbe0d7b'
+cask "noxappplayer" do
+  version "3.8.5.5,20210513:a9853a4a5ba64f9b96c1e3bf6df15e3b"
+  sha256 "1668997e8163e4521d379e1b9406fddceb901eb8fca92daf347b1534b99770f7"
 
-  url "https://res06.bignox.com/full/2020#{version.after_comma}/7fc81e345aff4ac394d6c188c67e4cf1.dmg?filename=Nox_installer_for_mac_v#{version.before_comma}_en_#{version.after_comma}.dmg"
-  appcast 'https://www.bignox.com/blog/category/releasenote/'
-  name 'NoxAppPlayer'
-  homepage 'https://www.bignox.com/'
+  url "https://res06.bignox.com/full/#{version.after_comma.before_colon}/#{version.after_colon}.dmg?filename=NoxInstaller_#{version.before_comma}_en.dmg"
+  name "NoxAppPlayer"
+  desc "Android emulator to play mobile games"
+  homepage "https://www.bignox.com/"
 
-  app 'NoxAppPlayer.app'
+  livecheck do
+    url "https://www.bignox.com/en/download/fullPackage/mac_fullzip"
+    strategy :header_match do |headers|
+      match = headers["location"].match(%r{/(\d+)/([^/]+)\.dmg\?filename=NoxInstaller_(\d+(?:\.\d+)*)_en\.dmg}i)
+      "#{match[3]},#{match[1]}:#{match[2]}"
+    end
+  end
+
+  container nested: "NoxAppPlayerInstaller.app/Contents/MacOS/NoxAppPlayer.zip"
+
+  app "NoxAppPlayer.app"
+
+  zap trash: [
+    "~/Library/Application Support/NoxAppPlayer",
+    "~/Library/Saved Application State/com.nox.NoxAppPlayer.savedState",
+  ]
 end

@@ -1,20 +1,25 @@
-cask 'zeplin' do
-  version '3.1,862'
-  sha256 'bb2858dde9f8324d717a3f501e0057dfefcc3e58855ff9314f628b9b91f18665'
+cask "zeplin" do
+  version "3.20,1189"
+  sha256 :no_check
 
-  url 'https://api.zeplin.io/urls/download-mac'
-  appcast 'https://rink.hockeyapp.net/api/2/apps/8926efffe734b6d303d09f41d90c34fc'
-  name 'Zeplin'
-  homepage 'https://zeplin.io/'
+  url "https://api.zeplin.io/urls/download-mac"
+  name "Zeplin"
+  desc "Share, organize and collaborate on designs"
+  homepage "https://zeplin.io/"
+
+  livecheck do
+    url "https://api.appcenter.ms/v0.1/public/sparkle/apps/8926efff-e734-b6d3-03d0-9f41d90c34fc"
+    strategy :sparkle
+  end
 
   auto_updates true
-  depends_on macos: '>= :sierra'
+  depends_on macos: ">= :sierra"
 
-  app 'Zeplin.app'
+  app "Zeplin.app"
 
   zap trash: [
-               '~/Library/Logs/Zeplin',
-               '~/Library/Caches/io.zeplin.osx',
-               '~/Library/Preferences/io.zeplin.osx.plist',
-             ]
+    "~/Library/Logs/Zeplin",
+    "~/Library/Caches/io.zeplin.osx",
+    "~/Library/Preferences/io.zeplin.osx.plist",
+  ]
 end

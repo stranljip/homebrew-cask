@@ -1,11 +1,15 @@
-cask 'quickbooks-online' do
-  version '4.1.2-69'
-  sha256 'c7a3d27634247fb98ddedf096815f9a3929b66841da893b066f91af86559c769'
+cask "quickbooks-online" do
+  version "4.4.0-83"
+  sha256 "cc05418a2d52e460289aef64a62d60888f980eaf84dea05322127da637887dc2"
 
   url "https://http-download.intuit.com/http.intuit/CMO/qbo_client_web/static/release/mac/QuickBooks-#{version}-mac.zip"
-  appcast 'https://http-download.intuit.com/http.intuit/CMO/qbo_client_web/static/release/mac/latest-mac.yml'
-  name 'QuickBooks'
-  homepage 'https://qbo.intuit.com/'
+  name "QuickBooks"
+  homepage "https://qbo.intuit.com/"
 
-  app 'QuickBooks.app'
+  livecheck do
+    url "https://http-download.intuit.com/http.intuit/CMO/qbo_client_web/static/release/mac/latest-mac.yml"
+    strategy :electron_builder
+  end
+
+  app "QuickBooks.app"
 end

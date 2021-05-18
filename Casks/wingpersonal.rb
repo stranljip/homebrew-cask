@@ -1,13 +1,14 @@
-cask 'wingpersonal' do
-  version '7.2.1.0'
-  sha256 'b2274f4bab7d414d5b1158515ba27c9e9a80f853d6bd275c6c8587d0fb07d73d'
+cask "wingpersonal" do
+  version "7.2.7.0"
+  sha256 "772faf1b9238b8e376ac0dc56678c437cf147f0ef3dfb647a095b1ce367c8be4"
 
   url "https://wingware.com/pub/wing-personal/#{version}/wing-personal-#{version}.dmg"
-  appcast 'https://www.wingware.com/downloads/wing-personal'
-  name 'WingPersonal'
-  homepage 'https://www.wingware.com/'
+  appcast "https://www.wingware.com/downloads/wing-personal"
+  name "WingPersonal"
+  desc "Free Python IDE designed for students and hobbyists"
+  homepage "https://www.wingware.com/"
 
-  depends_on macos: '>= :sierra'
+  depends_on macos: ">= :sierra"
 
-  app 'WingPersonal.app'
+  app "WingPersonal.app"
 end

@@ -1,24 +1,18 @@
-cask 'porting-kit' do
-  version '3.0.18'
-  sha256 'e1ce4dcfd18dab42717d2e52e16a8c781c84ff48653ed32565a984f5251d4448'
+cask "porting-kit" do
+  version "4.1.31"
+  sha256 "7b1c65bafd41a621e5b10843f5eb27ad9f10b77dede13ad5219911cb94a2871f"
 
-  url "http://portingkit.com/kit/Porting%20Kit%20#{version}.zip"
-  appcast 'http://portingkit.com/kit/updatecast.xml'
-  name 'Porting Kit'
-  homepage 'http://portingkit.com/en/'
+  url "https://portingkit.com/pub/portingkit/Porting%20Kit-#{version}-mac.zip"
+  name "Porting Kit"
+  desc "Install games and apps compiled for Microsoft Windows"
+  homepage "https://portingkit.com/"
+
+  livecheck do
+    url "https://portingkit.com/pub/portingkit/latest-mac.yml"
+    strategy :electron_builder
+  end
 
   auto_updates true
-  conflicts_with cask: 'porting-kit-legacy'
 
-  app 'Porting Kit.app'
-
-  zap trash: [
-               '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/edu.ufrj.vitormm.porting-kit.sfl*',
-               '~/Library/Application Support/Porting-Kit',
-               '~/Library/Caches/edu.ufrj.vitormm.Porting-Kit',
-               '~/Library/Cookies/edu.ufrj.vitormm.Porting-Kit.binarycookies',
-               '~/Library/Preferences/edu.ufrj.vitormm.Porting-Kit.plist',
-               '~/Library/Saved Application State/edu.ufrj.vitormm.Porting-Kit.savedState',
-               '~/Library/WebKit/edu.ufrj.vitormm.Porting-Kit',
-             ]
+  app "Porting Kit.app"
 end

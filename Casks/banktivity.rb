@@ -1,14 +1,15 @@
-cask 'banktivity' do
-  version '7.4.2'
-  sha256 '604fbeb5405108b6d37b17fc3055503cd03e3e0276c098d569b1f49ed5a84286'
+cask "banktivity" do
+  version "8.2.2"
+  sha256 "f598ec9310f3cbb7253a8ea2a4fe0c7011c85e30a505bd44a718c5d1c7da56c5"
 
-  # iggsoft.com was verified as official when first introduced to the cask
-  url "https://www.iggsoft.com/banktivity/Banktivity#{version.major}_Web.dmg"
-  appcast 'https://www.iggsoftware.com/product-versions.json'
-  name 'Banktivity'
-  homepage 'https://www.iggsoftware.com/banktivity/'
+  url "https://www.iggsoft.com/banktivity/Banktivity#{version}.dmg",
+      verified: "iggsoft.com/"
+  appcast "https://www.iggsoft.com/banktivity/banktivity-versions-feed.json"
+  name "Banktivity"
+  desc "App to manage bank accounts in one place"
+  homepage "https://www.iggsoftware.com/banktivity/"
 
-  depends_on macos: '>= :high_sierra'
+  depends_on macos: ">= :catalina"
 
-  app "Banktivity #{version.major}.app"
+  app "Banktivity.app"
 end

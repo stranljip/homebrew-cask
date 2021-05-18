@@ -1,12 +1,12 @@
-cask 'masscode' do
-  version '1.1.0'
-  sha256 'c57809663fdfd919de72d03793ab0af7078bb795ae05b11730cbcccb0abf3f76'
+cask "masscode" do
+  version "1.3.0"
+  sha256 "64fb6b176b5fad02e2b6fcec3abb1d350fa2831b2ba1dd214db5a874dfe9f23e"
 
-  # github.com/antonreshetov/massCode was verified as official when first introduced to the cask
-  url "https://github.com/antonreshetov/massCode/releases/download/v#{version}/massCode-#{version}-mac.zip"
-  appcast 'https://github.com/antonreshetov/massCode/releases.atom'
-  name 'massCode'
-  homepage 'https://masscode.io/'
+  url "https://github.com/antonreshetov/massCode/releases/download/v#{version}/massCode-#{version}.dmg",
+      verified: "github.com/antonreshetov/massCode/"
+  name "massCode"
+  desc "Open-source code snippets manager for developers"
+  homepage "https://masscode.io/"
 
-  app 'massCode.app'
+  app "massCode.app"
 end

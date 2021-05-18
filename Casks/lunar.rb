@@ -1,21 +1,25 @@
-cask 'lunar' do
-  version '3.1.1'
-  sha256 'f1d4878774d70183bbe4a3270b9a4b1fff1e257a3b49417fa8fcce08f7ed0a7f'
+cask "lunar" do
+  version "3.2.3"
+  sha256 "88bf404e03364eaf2b33aad449cddc1d80d9e21b5f99e35db2bc2db636b9c48d"
 
-  # github.com/alin23/Lunar was verified as official when first introduced to the cask
-  url "https://github.com/alin23/Lunar/releases/download/v#{version}/Lunar-#{version}.dmg"
-  appcast 'https://github.com/alin23/Lunar/releases.atom'
-  name 'Lunar'
-  homepage 'https://lunar.fyi/'
+  url "https://lunar.fyi/download/#{version}"
+  name "Lunar"
+  desc "Adaptive brightness for external displays"
+  homepage "https://lunar.fyi/"
+
+  livecheck do
+    url "https://lunar.fyi/appcast.xml"
+    strategy :sparkle
+  end
 
   auto_updates true
-  depends_on macos: '>= :yosemite'
+  depends_on macos: ">= :yosemite"
 
-  app 'Lunar.app'
+  app "Lunar.app"
 
   zap trash: [
-               '~/Library/Application Support/Lunar',
-               '~/Library/Application Support/site.lunarapp.Lunar',
-               '~/Library/Preferences/site.lunarapp.Lunar.plist',
-             ]
+    "~/Library/Application Support/Lunar",
+    "~/Library/Application Support/site.lunarapp.Lunar",
+    "~/Library/Preferences/site.lunarapp.Lunar.plist",
+  ]
 end

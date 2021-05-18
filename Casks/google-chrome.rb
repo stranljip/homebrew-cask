@@ -1,53 +1,54 @@
-cask 'google-chrome' do
-  version '80.0.3987.149'
-  sha256 '45df6d3b4e36a0b3879e7b44d4e770fc46b0b39e27c65b48c4474d3ab5358957'
+cask "google-chrome" do
+  version "90.0.4430.212"
+  sha256 :no_check
 
-  url 'https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg'
-  appcast 'https://omahaproxy.appspot.com/history?os=mac;channel=stable'
-  name 'Google Chrome'
-  homepage 'https://www.google.com/chrome/'
+  url "https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg"
+  name "Google Chrome"
+  desc "Web browser"
+  homepage "https://www.google.com/chrome/"
+
+  livecheck do
+    url "https://omahaproxy.appspot.com/history?os=mac;channel=stable"
+    strategy :page_match
+    regex(/mac,stable,(\d+(?:\.\d+)*)/i)
+  end
 
   auto_updates true
-  conflicts_with cask: [
-                         'google-chrome-beta',
-                         'google-chrome-dev',
-                       ]
-  depends_on macos: '>= :yosemite'
+  depends_on macos: ">= :yosemite"
 
-  app 'Google Chrome.app'
+  app "Google Chrome.app"
 
-  uninstall launchctl: [
-                         'com.google.keystone.agent',
-                         'com.google.keystone.daemon',
-                       ]
-
-  zap trash: [
-               '/Library/Caches/com.google.SoftwareUpdate.*',
-               '/Library/Google/Google Chrome Brand.plist',
-               '/Library/Google/GoogleSoftwareUpdate',
-               '~/Library/Application Support/Google/Chrome',
-               '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.google.chrome.app.*.sfl*',
-               '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.google.chrome.sfl*',
-               '~/Library/Caches/Google/Chrome',
-               '~/Library/Caches/com.google.Chrome',
-               '~/Library/Caches/com.google.Chrome.helper.*',
-               '~/Library/Caches/com.google.Keystone',
-               '~/Library/Caches/com.google.Keystone.Agent',
-               '~/Library/Caches/com.google.SoftwareUpdate',
-               '~/Library/Google/Google Chrome Brand.plist',
-               '~/Library/Google/GoogleSoftwareUpdate',
-               '~/Library/LaunchAgents/com.google.keystone.agent.plist',
-               '~/Library/Logs/GoogleSoftwareUpdateAgent.log',
-               '~/Library/Preferences/com.google.Chrome.plist',
-               '~/Library/Preferences/com.google.Keystone.Agent.plist',
-               '~/Library/Saved Application State/com.google.Chrome.app.*.savedState',
-               '~/Library/Saved Application State/com.google.Chrome.savedState',
-               '~/Library/WebKit/com.google.Chrome',
-             ],
-      rmdir: [
-               '/Library/Google',
-               '~/Library/Application Support/Google',
-               '~/Library/Caches/Google',
-               '~/Library/Google',
-             ]
+  zap trash:     [
+    "/Library/Caches/com.google.SoftwareUpdate.*",
+    "/Library/Google/Google Chrome Brand.plist",
+    "/Library/Google/GoogleSoftwareUpdate",
+    "~/Library/Application Support/Google/Chrome",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.google.chrome.app.*.sfl*",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.google.chrome.sfl*",
+    "~/Library/Caches/Google/Chrome",
+    "~/Library/Caches/com.google.Chrome",
+    "~/Library/Caches/com.google.Chrome.helper.*",
+    "~/Library/Caches/com.google.Keystone",
+    "~/Library/Caches/com.google.Keystone.Agent",
+    "~/Library/Caches/com.google.SoftwareUpdate",
+    "~/Library/Google/Google Chrome Brand.plist",
+    "~/Library/Google/GoogleSoftwareUpdate",
+    "~/Library/LaunchAgents/com.google.keystone.agent.plist",
+    "~/Library/Logs/GoogleSoftwareUpdateAgent.log",
+    "~/Library/Preferences/com.google.Chrome.plist",
+    "~/Library/Preferences/com.google.Keystone.Agent.plist",
+    "~/Library/Saved Application State/com.google.Chrome.app.*.savedState",
+    "~/Library/Saved Application State/com.google.Chrome.savedState",
+    "~/Library/WebKit/com.google.Chrome",
+  ],
+      rmdir:     [
+        "/Library/Google",
+        "~/Library/Application Support/Google",
+        "~/Library/Caches/Google",
+        "~/Library/Google",
+      ],
+      launchctl: [
+        "com.google.keystone.agent",
+        "com.google.keystone.daemon",
+      ]
 end

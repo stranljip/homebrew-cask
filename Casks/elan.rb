@@ -1,13 +1,21 @@
-cask 'elan' do
-  version '5.8'
-  sha256 '91153961b6ba6ad148bd5021967568e7dcbc2416b709e0c8681163e89f270d7d'
+cask "elan" do
+  version "6.1"
+  sha256 "f3be27807cd30fdf8d2ca325e9b8a5848eb1daf51685a946c268f2720af1db72"
 
   url "https://www.mpi.nl/tools/elan/ELAN_#{version.dots_to_hyphens}_mac.zip"
-  appcast 'https://tla.mpi.nl/tools/tla-tools/elan/release-notes/'
-  name 'ELAN'
-  homepage 'https://tla.mpi.nl/tools/tla-tools/elan/'
+  name "ELAN"
+  desc "Annotation tool for audio and video recordings"
+  homepage "https://archive.mpi.nl/tla/elan"
 
-  depends_on macos: '>= :high_sierra'
+  livecheck do
+    url "https://archive.mpi.nl/tla/elan/download"
+    strategy :page_match do |page|
+      v = page[%r{href=.*?/ELAN_(\d+(?:-\d+)*)_mac\.zip}i, 1]
+      v.tr("-", ".")
+    end
+  end
+
+  depends_on macos: ">= :high_sierra"
 
   app "ELAN_#{version}.app"
 end

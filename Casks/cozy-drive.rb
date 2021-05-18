@@ -1,12 +1,19 @@
-cask 'cozy-drive' do
-  version '3.19.0'
-  sha256 '40852a2b3138419079d808cb7d7e2bb9c29a6b852b25da52b12ce26ba09127f8'
+cask "cozy-drive" do
+  version "3.28.0"
+  sha256 "6ef862d491a66ef87c714b0a7568a7cc88a1109ecf28c619d75507a08aa1504a"
 
-  # nuts.cozycloud.cc was verified as official when first introduced to the cask
-  url "https://nuts.cozycloud.cc/download/channel/stable/CozyDrive-#{version}.dmg"
-  appcast 'https://macupdater.net/cgi-bin/check_urls/check_url_filename.cgi?url=https://nuts.cozycloud.cc/download/channel/stable/osx'
-  name 'Cozy Drive'
-  homepage 'https://cozy.io/'
+  url "https://nuts.cozycloud.cc/download/channel/stable/CozyDrive-#{version}.dmg",
+      verified: "nuts.cozycloud.cc/"
+  name "Cozy Drive"
+  desc "File synchronization for Cozy Cloud"
+  homepage "https://cozy.io/"
 
-  app 'Cozy Drive.app'
+  livecheck do
+    url "https://nuts.cozycloud.cc/download/channel/stable/osx"
+    strategy :header_match
+  end
+
+  depends_on macos: ">= :sierra"
+
+  app "Cozy Drive.app"
 end

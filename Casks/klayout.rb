@@ -1,36 +1,36 @@
-cask 'klayout' do
-  version '0.26.3'
+cask "klayout" do
+  version "0.26.8"
 
   if MacOS.version <= :high_sierra
-    sha256 '1fe9568dcf100bb4aacfb298b1a004ca3a8e1b34a17671837fff4ba2d0948db8'
+    sha256 "b6ee7a8ee71e8cb218b6ecea4df6865cb1d0f49b646101246543bd7de1d6d5e7"
 
-    # klayout.org was verified as official when first introduced to the cask
-    url "https://www.klayout.org/downloads/MacOS/ST-klayout-#{version}-macOS-HighSierra-1-qt5MP-RsysPsys.dmg"
+    url "https://www.klayout.org/downloads/MacOS/ST-klayout-#{version}-macOS-HighSierra-1-qt5MP-RsysPsys.dmg",
+        verified: "klayout.org/"
   elsif MacOS.version <= :mojave
-    sha256 '3436de14f01e2618cf57a986b20d8931350199e3bed6a65d666837f860042539'
+    sha256 "e3ade30ac217f312720d2157cd6e9afad566cbb239a08ecd55a6f9d8dc9af3e0"
 
-    # klayout.org was verified as official when first introduced to the cask
-    url "https://www.klayout.org/downloads/MacOS/ST-klayout-#{version}-macOS-Mojave-1-qt5MP-RsysPsys.dmg"
+    url "https://www.klayout.org/downloads/MacOS/ST-klayout-#{version}-macOS-Mojave-1-qt5MP-RsysPsys.dmg",
+        verified: "klayout.org/"
   else
-    sha256 '177197268dc2b78601392e99f8b41148660f24ea9a8781afe4d7a0249f4bf7e4'
+    sha256 "73641ce0c0f34bb21d43001f1f5924f60221a60458b131cb445fdf3f98c5dff5"
 
-    # klayout.org was verified as official when first introduced to the cask
-    url "https://www.klayout.org/downloads/MacOS/ST-klayout-#{version}-macOS-Catalina-1-qt5MP-RsysPsys.dmg"
+    url "https://www.klayout.org/downloads/MacOS/ST-klayout-#{version}-macOS-Catalina-1-qt5MP-RsysPsys.dmg",
+        verified: "klayout.org/"
   end
 
-  appcast 'https://www.klayout.de/development.html'
-  name 'KLayout'
-  homepage 'https://www.klayout.de/'
+  appcast "https://www.klayout.de/development.html"
+  name "KLayout"
+  homepage "https://www.klayout.de/"
 
-  depends_on macos: '>= :mojave'
+  depends_on macos: ">= :mojave"
 
-  suite 'KLayout'
+  suite "KLayout"
 
   preflight do
     # There is no sub-folder in the DMG; the root *is* the folder
-    FileUtils.mv(staged_path.children, staged_path.join('KLayout').tap(&:mkpath))
+    FileUtils.mv(staged_path.children, staged_path.join("KLayout").tap(&:mkpath))
   end
 
-  uninstall pkgutil: 'klayout.de',
-            quit:    'klayout.de'
+  uninstall pkgutil: "klayout.de",
+            quit:    "klayout.de"
 end

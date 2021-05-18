@@ -1,16 +1,23 @@
-cask 'kotlin-native' do
-  version '1.3.61'
-  sha256 'e026f5286e2f8853c49ebac1c57b2e76f5fab67a431013442ada84347bf24415'
+cask "kotlin-native" do
+  version "1.5.0"
+  sha256 "246cacdc4791067f4d99d0baf3d58aecfd2c43b54bf9a84f463c1d782c9718b5"
 
-  # github.com/JetBrains/kotlin was verified as official when first introduced to the cask
-  url "https://github.com/JetBrains/kotlin/releases/download/v#{version}/kotlin-native-macos-#{version}.tar.gz"
-  appcast 'https://github.com/JetBrains/kotlin-native/releases.atom'
-  name 'Kotlin Native'
-  homepage 'https://kotlinlang.org/docs/reference/native-overview.html'
+  url "https://github.com/JetBrains/kotlin/releases/download/v#{version}/kotlin-native-macos-#{version}.tar.gz",
+      verified: "github.com/JetBrains/kotlin/"
+  name "Kotlin Native"
+  desc "LLVM backend for Kotlin"
+  homepage "https://kotlinlang.org/docs/reference/native-overview.html"
 
-  conflicts_with formula: 'kotlin'
+  livecheck do
+    url :url
+    strategy :git
+    regex(/^v(\d+(?:\.\d+)*)$/)
+  end
+
+  conflicts_with formula: "kotlin"
 
   binary "kotlin-native-macos-#{version}/bin/cinterop"
+  binary "kotlin-native-macos-#{version}/bin/generate-platform"
   binary "kotlin-native-macos-#{version}/bin/jsinterop"
   binary "kotlin-native-macos-#{version}/bin/klib"
   binary "kotlin-native-macos-#{version}/bin/konan-lldb"
@@ -20,6 +27,6 @@ cask 'kotlin-native' do
   binary "kotlin-native-macos-#{version}/bin/run_konan"
 
   caveats do
-    depends_on_java '6+'
+    depends_on_java "6+"
   end
 end

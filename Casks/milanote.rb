@@ -1,21 +1,26 @@
-cask 'milanote' do
-  version '2.0.5'
-  sha256 'fe18fd0be894d9237f21e76576048bd522d547f0fb7bce420b36ad6a509457ea'
+cask "milanote" do
+  version "2.2.41"
+  sha256 "b22b678915f54c7e3c2e312227a82400ba5df452217765b523b05640d2d6f506"
 
-  # milanote-app-releases.s3.amazonaws.com was verified as official when first introduced to the cask
-  url "https://milanote-app-releases.s3.amazonaws.com/Milanote-#{version}.dmg"
-  appcast 'https://www.milanote.com/download-mac-app'
-  name 'Milanote'
-  homepage 'https://www.milanote.com/'
+  url "https://milanote-app-releases.s3.amazonaws.com/Milanote-#{version}.dmg",
+      verified: "milanote-app-releases.s3.amazonaws.com/"
+  name "Milanote"
+  desc "Organize your ideas and projects into visual boards"
+  homepage "https://www.milanote.com/"
 
-  app 'Milanote.app'
+  livecheck do
+    url "https://www.milanote.com/download-mac-app"
+    regex(%r{href=.*?/Milanote[._-]?v?(\d+(?:\.\d+)+)\.dmg}i)
+  end
+
+  app "Milanote.app"
 
   zap trash: [
-               '~/Library/Application Support/Milanote',
-               '~/Library/Caches/com.milanote.app',
-               '~/Library/Caches/com.milanote.app.ShipIt',
-               '~/Library/Library/Logs/Milanote',
-               '~/Library/Preferences/com.milanote.app.helper.plist',
-               '~/Library/Preferences/com.milanote.app.plist',
-             ]
+    "~/Library/Application Support/Milanote",
+    "~/Library/Caches/com.milanote.app",
+    "~/Library/Caches/com.milanote.app.ShipIt",
+    "~/Library/Library/Logs/Milanote",
+    "~/Library/Preferences/com.milanote.app.helper.plist",
+    "~/Library/Preferences/com.milanote.app.plist",
+  ]
 end

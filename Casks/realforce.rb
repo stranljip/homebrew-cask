@@ -1,13 +1,20 @@
-cask 'realforce' do
-  version '1.0.2'
-  sha256 '9db2e54faee1b3ecb4d727585827edbe0ce07940c2738e296ddaf0ccb28b0d5a'
+cask "realforce" do
+  version "2.0.0"
+  sha256 "b8ea9d042a8b3e40c34159de96da0d31513bc447f83898ad72d93e1d311cd4aa"
 
-  url "https://www.realforce.co.jp/support/download/Install%20REALFORCE%20Software_#{version.dots_to_hyphens}.pkg"
-  appcast 'https://www.realforce.co.jp/support/download/index.html'
-  name 'REALFORCE for Mac'
-  homepage 'https://www.realforce.co.jp/support/download/index.html'
+  url "https://www.realforce.co.jp/support/download/software/mac/files/Install%20REALFORCE%20Software_#{version.dots_to_hyphens}.pkg"
+  name "REALFORCE for Mac"
+  homepage "https://www.realforce.co.jp/"
+
+  livecheck do
+    url "https://www.realforce.co.jp/support/download/keyboard_mac.html"
+    strategy :page_match do |page|
+      v = page[%r{href=.*?/Install\s*REALFORCE\s*Software_(\d+(?:-\d+)*)\.pkg}i, 1]
+      v.tr("-", ".")
+    end
+  end
 
   pkg "Install REALFORCE Software_#{version.dots_to_hyphens}.pkg"
 
-  uninstall pkgutil: 'com.topre.installpkg.realforce'
+  uninstall pkgutil: "com.topre.installpkg.realforce"
 end

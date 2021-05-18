@@ -1,13 +1,14 @@
-cask 'pdfelement' do
-  version '7.5.9,5237'
-  sha256 'b482f172508ce80be9b467e968997f47a766ad2ac61c8e67d11c5ec160eb61af'
+cask "pdfelement" do
+  version "7.6.7,3180"
+  sha256 :no_check
 
-  url "http://download.wondershare.com/cbs_down/mac-pdfelement_full#{version.after_comma}.dmg"
-  appcast 'https://cbs.wondershare.com/go.php?m=upgrade_info&pid=5237'
-  name 'Wondershare PDFelement for Mac'
-  homepage 'https://pdf.wondershare.com/'
+  url "https://download.wondershare.com/cbs_down/mac-pdfelement_full5237.dmg"
+  appcast "https://cbs.wondershare.com/go.php?m=upgrade_info&pid=5237"
+  name "Wondershare PDFelement for Mac"
+  desc "Create, edit, convert, and sign PDF documents"
+  homepage "https://pdf.wondershare.com/"
 
-  depends_on macos: '>= :sierra'
+  depends_on macos: ">= :sierra"
 
-  app 'PDFelement.app'
+  app "PDFelement.app"
 end

@@ -1,18 +1,22 @@
-cask 'yandex-disk' do
-  version '3.1.11,30'
-  sha256 'c63d03284d3d7d3039b98a6447defcf0ad5b6e1062250e76e93b80a7368d4fb1'
+cask "yandex-disk" do
+  version "3.2.8,2721"
+  sha256 :no_check
 
-  url "https://disk.yandex.ru/download/YandexDisk#{version.after_comma}.dmg/?instant=1"
-  name 'Yandex.Disk'
-  homepage 'https://disk.yandex.ru/'
+  url "https://disk.yandex.ru/download/Yandex.Disk.dmg/?instant=1"
+  name "Yandex.Disk"
+  desc "Cloud storage"
+  homepage "https://disk.yandex.ru/"
 
-  auto_updates true
+  livecheck do
+    url :url
+    strategy :extract_plist
+  end
 
-  app 'Yandex.Disk.2.app'
+  app "Yandex.Disk.2.app"
 
   zap trash: [
-               '~/Library/Application Support/Yandex.Disk.2',
-               '~/Library/Preferences/ru.yandex.desktop.disk.screenshots.plist',
-               '~/Library/Preferences/ru.yandex.desktop.disk2.plist',
-             ]
+    "~/Library/Application Support/Yandex.Disk.2",
+    "~/Library/Preferences/ru.yandex.desktop.disk.screenshots.plist",
+    "~/Library/Preferences/ru.yandex.desktop.disk2.plist",
+  ]
 end

@@ -1,11 +1,16 @@
-cask 'ibackup-viewer' do
-  version '4.1583'
-  sha256 'a0834db436d349a138d54bbc151fbeb1f02395341b8ae8db6dcf4ae116ce70e8'
+cask "ibackup-viewer" do
+  version "4.1840"
+  sha256 :no_check
 
-  url 'https://www.imactools.com/download/iBackupViewer.dmg'
-  appcast 'https://www.imactools.com/update/ibackupviewer.xml'
-  name 'iBackup Viewer'
-  homepage 'https://www.imactools.com/iphonebackupviewer/'
+  url "https://www.imactools.com/download/iBackupViewer.dmg"
+  name "iBackup Viewer"
+  desc "Extract Data from iPhone Backups"
+  homepage "https://www.imactools.com/iphonebackupviewer/"
 
-  app 'iBackup Viewer.app'
+  livecheck do
+    url "https://www.imactools.com/update/ibackupviewer.xml"
+    strategy :sparkle
+  end
+
+  app "iBackup Viewer.app"
 end

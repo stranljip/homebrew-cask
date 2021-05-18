@@ -1,12 +1,17 @@
-cask 'xca' do
-  version '2.2.1'
-  sha256 '329b71d8ab203317198cc502a61174db7c56f24caa8688947282bacf24cd3e9b'
+cask "xca" do
+  version "2.4.0"
+  sha256 "1fb5fa69759f9bfd15e0a8ddabc6b9e2cf52e9c41ad2346b2f4c293d950c6bc4"
 
-  # github.com/chris2511/xca was verified as official when first introduced to the cask
-  url "https://github.com/chris2511/xca/releases/download/RELEASE.#{version}/xca-#{version}.dmg"
-  appcast 'https://github.com/chris2511/xca/releases.atom'
-  name 'XCA'
-  homepage 'https://hohnstaedt.de/xca/'
+  url "https://github.com/chris2511/xca/releases/download/RELEASE.#{version}/xca-#{version}.dmg",
+      verified: "github.com/chris2511/xca/"
+  name "XCA"
+  desc "X Certificate and Key management"
+  homepage "https://hohnstaedt.de/xca/"
 
-  app 'xca.app'
+  livecheck do
+    url :url
+    regex(/^RELEASE\.(\d+(?:\.\d+)*)$/i)
+  end
+
+  app "xca.app"
 end

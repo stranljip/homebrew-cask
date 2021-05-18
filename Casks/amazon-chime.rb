@@ -1,22 +1,28 @@
-cask 'amazon-chime' do
-  version '4.30.7462'
-  sha256 '46b1b912a1fc17d631b16c8f0e233ec76e738747b55b81f697b534469e027f2d'
+cask "amazon-chime" do
+  version "4.39.8497"
+  sha256 "fac751203d220d791ed68e7e74677babc5ade2562f88207dfe083c42902baa9d"
 
   url "https://clients.chime.aws/mac/releases/AmazonChime-OSX.release-#{version}.dmg"
-  appcast 'https://clients.chime.aws/mac/appcast'
-  name 'Amazon Chime'
-  homepage 'https://chime.aws/'
+  name "Amazon Chime"
+  desc "Communications service"
+  homepage "https://chime.aws/"
 
-  depends_on macos: '>= :el_capitan'
+  livecheck do
+    url "https://clients.chime.aws/mac/appcast"
+    strategy :sparkle
+  end
 
-  app 'Amazon Chime.app'
+  auto_updates true
+  depends_on macos: ">= :el_capitan"
+
+  app "Amazon Chime.app"
 
   zap trash: [
-               '~/Library/Application Support/Amazon Chime',
-               '~/Library/Application Support/com.amazon.Amazon-Chime',
-               '~/Library/Caches/com.amazon.Amazon-Chime',
-               '~/Library/Logs/Amazon Chime',
-               '~/Library/Preferences/com.amazon.Amazon-Chime.plist',
-               '~/Library/WebKit/com.amazon.Amazon-Chime',
-             ]
+    "~/Library/Application Support/Amazon Chime",
+    "~/Library/Application Support/com.amazon.Amazon-Chime",
+    "~/Library/Caches/com.amazon.Amazon-Chime",
+    "~/Library/Logs/Amazon Chime",
+    "~/Library/Preferences/com.amazon.Amazon-Chime.plist",
+    "~/Library/WebKit/com.amazon.Amazon-Chime",
+  ]
 end

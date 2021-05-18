@@ -1,17 +1,26 @@
-cask 'gitup' do
-  version '1.1.2'
-  sha256 '78b10d8e489d7ff0ddd5f7c3bbbdcbecf4c9896619eaf6a3a268e9debef28203'
+cask "gitup" do
+  version "1.2"
+  sha256 :no_check
 
-  # gitup-builds.s3.amazonaws.com was verified as official when first introduced to the cask
-  url 'https://gitup-builds.s3.amazonaws.com/stable/GitUp.zip'
-  appcast 'https://github.com/git-up/GitUp/releases.atom'
-  name 'GitUp'
-  homepage 'https://gitup.co/'
+  url "https://gitup-builds.s3.amazonaws.com/stable/GitUp.zip",
+      verified: "gitup-builds.s3.amazonaws.com/"
+  name "GitUp"
+  desc "Git interface focused on visual interaction"
+  homepage "https://gitup.co/"
+
+  livecheck do
+    url "https://github.com/git-up/GitUp/releases"
+    strategy :github_latest
+  end
 
   auto_updates true
 
-  app 'GitUp.app'
+  app "GitUp.app"
   binary "#{appdir}/GitUp.app/Contents/SharedSupport/gitup"
 
-  zap trash: '~/Library/Preferences/co.gitup.mac.plist'
+  zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/co.gitup.mac.sfl*",
+    "~/Library/Caches/co.gitup.mac",
+    "~/Library/Preferences/co.gitup.mac.plist",
+  ]
 end

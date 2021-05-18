@@ -1,22 +1,22 @@
-cask 'ipe' do
-  version '7.2.13'
-  sha256 '3003343719f3b17f32a321fff64f10e60e92b4d9550e136c65838c761c23fe55'
+cask "ipe" do
+  version "7.2.24"
+  sha256 "af72be083497359d9ee61b716a7b8d718fa773383f44227d334323c4ab33275f"
 
-  # bintray.com/otfried was verified as official when first introduced to the cask
-  url "https://dl.bintray.com/otfried/generic/ipe/#{version.major_minor}/ipe-#{version}-mac.dmg"
-  appcast 'http://ipe.otfried.org/'
-  name 'Ipe'
-  homepage 'http://ipe.otfried.org/'
+  url "https://github.com/otfried/ipe/releases/download/v#{version}/ipe-#{version}-mac.dmg",
+      verified: "github.com/otfried/ipe/"
+  name "Ipe"
+  desc "Drawing editor for creating figures in PDF format"
+  homepage "https://ipe.otfried.org/"
 
-  depends_on macos: '>= :yosemite'
+  depends_on macos: ">= :yosemite"
 
-  app 'Ipe.app'
+  app "Ipe.app"
 
   zap trash: [
-               '~/.ipe',
-               '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.otfried.ipe.ipe.sfl*',
-               '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.otfried.ipe.sfl*',
-               '~/Library/Preferences/org.otfried.ipe.Ipe.plist',
-               '~/Library/Saved Application State/org.otfried.ipe.savedState',
-             ]
+    "~/.ipe",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.otfried.ipe.ipe.sfl*",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.otfried.ipe.sfl*",
+    "~/Library/Preferences/org.otfried.ipe.Ipe.plist",
+    "~/Library/Saved Application State/org.otfried.ipe.savedState",
+  ]
 end

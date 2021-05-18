@@ -1,14 +1,18 @@
-cask 'catlight' do
-  version '2.30.0'
-  sha256 '7a514b392b2d1e4c12717c5a981eb5e8a10ae53acb29b74a4d5a43f3318b4065'
+cask "catlight" do
+  version "2.34.2"
+  sha256 "42d4338ca3ce49db9ab05e248da2ea0a430aaf379a7a5b2a01d3575fa6da94b5"
 
-  # de2nac35bcll0.cloudfront.net was verified as official when first introduced to the cask
-  url "https://de2nac35bcll0.cloudfront.net/dl/mac/beta/CatLightSetup-#{version}.zip"
-  appcast 'https://catlight.io/downloads'
-  name 'catlight'
-  homepage 'https://catlight.io/'
+  url "https://download.catlight.io/rel/mac/beta/CatLightSetup-#{version}.zip"
+  name "catlight"
+  desc "Action center for developers"
+  homepage "https://catlight.io/"
 
-  depends_on macos: '>= :sierra'
+  livecheck do
+    url "https://catlight.io/downloads/mac/beta"
+    strategy :header_match
+  end
 
-  app 'Catlight.app'
+  depends_on macos: ">= :sierra"
+
+  app "Catlight.app"
 end

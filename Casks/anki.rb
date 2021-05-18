@@ -1,19 +1,24 @@
-cask 'anki' do
-  version '2.1.23'
-  sha256 '7dbe282f81ef20645479b750c0f2cde4c8f81d7752ca89262c10710533978389'
+cask "anki" do
+  version "2.1.44"
+  sha256 "6a4a7ad89a81182ae434a55581edb882e454f80540380d1001036b99098c2dff"
 
-  # github.com/ankitects/anki was verified as official when first introduced to the cask
-  url "https://github.com/ankitects/anki/releases/download/#{version}/anki-#{version}-mac.dmg"
-  appcast 'https://changes.ankiweb.net/README.md'
-  name 'Anki'
-  homepage 'https://apps.ankiweb.net/'
+  url "https://github.com/ankitects/anki/releases/download/#{version}/anki-#{version}-mac.dmg",
+      verified: "github.com/ankitects/anki/"
+  name "Anki"
+  desc "Memory training application"
+  homepage "https://apps.ankiweb.net/"
 
-  depends_on macos: '>= :sierra'
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
-  app 'Anki.app'
+  depends_on macos: ">= :high_sierra"
+
+  app "Anki.app"
 
   zap trash: [
-               '~/Library/Application Support/Anki',
-               '~/Library/Application Support/Anki2',
-             ]
+    "~/Library/Application Support/Anki",
+    "~/Library/Application Support/Anki2",
+  ]
 end

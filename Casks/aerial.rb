@@ -1,13 +1,15 @@
-cask 'aerial' do
-  version '1.8.1'
-  sha256 '3c44a2ae388aa99196a5ba7fc24c1cedd1f12f8772c537c839647962d728deee'
+cask "aerial" do
+  version "2.3.3"
+  sha256 "857c2fb27733ce8ba8fb6cadb4642e1994b14f800f335fbe058ff4ae5cb294cd"
 
   url "https://github.com/JohnCoates/Aerial/releases/download/v#{version}/Aerial.saver.zip"
-  appcast 'https://github.com/JohnCoates/Aerial/releases.atom'
-  name 'Aerial Screensaver'
-  homepage 'https://github.com/JohnCoates/Aerial'
+  name "Aerial Screensaver"
+  desc "Apple TV Aerial screensaver"
+  homepage "https://github.com/JohnCoates/Aerial"
 
-  screen_saver 'Aerial.saver'
+  depends_on macos: ">= :sierra"
 
-  zap trash: '~/Library/Caches/Aerial'
+  screen_saver "Aerial.saver"
+
+  zap trash: "~/Library/Caches/Aerial"
 end

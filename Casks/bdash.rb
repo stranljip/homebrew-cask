@@ -1,11 +1,11 @@
-cask 'bdash' do
-  version '1.7.2'
-  sha256 'd5c719d80f162b700594df215909624fe967e3f187b3d9c72fcb94cdd76957c6'
+cask "bdash" do
+  version "1.10.2"
+  sha256 "7e90357c2e81c809003fd999d613c976bc97aa3c199f2acbe7fa6a53d4e5b26c"
 
   url "https://github.com/bdash-app/bdash/releases/download/v#{version}/Bdash-#{version}-mac.zip"
-  appcast 'https://github.com/bdash-app/bdash/releases.atom'
-  name 'Bdash'
-  homepage 'https://github.com/bdash-app/bdash'
+  name "Bdash"
+  desc "Simple SQL Client for lightweight data analysis"
+  homepage "https://github.com/bdash-app/bdash"
 
-  app 'Bdash.app'
+  app "Bdash.app"
 end

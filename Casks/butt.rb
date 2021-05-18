@@ -1,12 +1,12 @@
-cask 'butt' do
-  version '0.1.19'
-  sha256 '3204c066c2aded451bd71a3bc2bf2636258286c716d5ded5c0099d7ded304c32'
+cask "butt" do
+  version "0.1.30"
+  sha256 "c5d1654c79d756f4bb13cc4d78c47b47b725acef418090ca74f24c08482f83f2"
 
-  # sourceforge.net/butt was verified as official when first introduced to the cask
-  url "https://downloads.sourceforge.net/butt/butt-#{version}.dmg"
-  appcast 'https://sourceforge.net/projects/butt/rss'
-  name 'Broadcast Using This Tool'
-  homepage 'https://danielnoethen.de/'
+  url "https://downloads.sourceforge.net/butt/butt-#{version}.dmg",
+      verified: "sourceforge.net/butt/"
+  name "Broadcast Using This Tool"
+  desc "Shoutcast and Icecast streaming client"
+  homepage "https://danielnoethen.de/butt/"
 
-  app 'butt.app'
+  app "butt.app"
 end

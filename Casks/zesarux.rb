@@ -1,11 +1,15 @@
-cask 'zesarux' do
-  version '8.1'
-  sha256 '169e140cefce17d3d62bb1983e801f07e18d8ddae771680eb275399c6b66ce67'
+cask "zesarux" do
+  version "9.2"
+  sha256 "66920b8f4e8af7178e1267152f6eb5056349fb91ae5453c42940be0b29ad9a8f"
 
-  url "https://github.com/chernandezba/zesarux/releases/download/#{version}/ZEsarUX_macos-#{version}.dmg.gz"
-  appcast 'https://github.com/chernandezba/zesarux/releases.atom'
-  name 'ZEsarUX'
-  homepage 'https://github.com/chernandezba/zesarux'
+  url "https://github.com/chernandezba/zesarux/releases/download/#{version}/ZEsarUX_macos-#{version}.dmg"
+  name "ZEsarUX"
+  homepage "https://github.com/chernandezba/zesarux"
 
-  app 'ZEsarUX.app'
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  app "ZEsarUX.app"
 end

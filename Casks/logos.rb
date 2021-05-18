@@ -1,23 +1,30 @@
-cask 'logos' do
-  version '8.12.0.0017'
-  sha256 '3900d550dc7dab9232d8f51f15b4de838b3fb4039da23eb7a84ec58f1f7696db'
+cask "logos" do
+  version "9.4.0.0009"
+  sha256 "5d5a4e451e7059ed976263aa0c70e31ad0ccac06c65b08b691bf707e2d43be24"
 
-  # downloads.logoscdn.com was verified as official when first introduced to the cask
-  url "https://downloads.logoscdn.com/LBS8/Installer/#{version}/LogosMac.dmg"
-  appcast "https://clientservices.logos.com/update/v1/feed/logos#{version.major}-mac/stable.xml"
-  name 'Logos Bible Software'
-  homepage 'https://www.logos.com/'
+  url "https://downloads.logoscdn.com/LBS#{version.major}/Installer/#{version}/LogosMac.dmg",
+      verified: "downloads.logoscdn.com/"
+  name "Logos"
+  desc "Bible study software"
+  homepage "https://www.logos.com/"
 
-  depends_on macos: '>= :el_capitan'
+  livecheck do
+    url "https://clientservices.logos.com/update/v1/feed/logos#{version.major}-mac/stable.xml"
+    strategy :page_match
+    regex(%r{<logos:version[^>]*>(\d+(?:\.\d+)*)</logos:version>}i)
+  end
 
-  app 'Logos.app'
+  auto_updates true
+  depends_on macos: ">= :mojave"
 
-  uninstall launchctl: 'com.logos.LogosIndexer',
-            quit:      'com.logos.Logos'
+  app "Logos.app"
+
+  uninstall launchctl: "com.logos.LogosIndexer",
+            quit:      "com.logos.Logos"
 
   zap trash: [
-               '~/Library/Preferences/com.logos.LogosIndexer.plist',
-               '~/Library/Preferences/com.logos.LogosCEF.plist',
-               '~/Library/Preferences/com.logos.Logos.plist',
-             ]
+    "~/Library/Preferences/com.logos.LogosIndexer.plist",
+    "~/Library/Preferences/com.logos.LogosCEF.plist",
+    "~/Library/Preferences/com.logos.Logos.plist",
+  ]
 end

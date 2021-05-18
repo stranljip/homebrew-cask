@@ -1,12 +1,11 @@
-cask 'squirrelsql' do
-  version '4.0.0'
-  sha256 'c15829260abb45f47e6927492e45c6b696f8edec41d10e96b36f214146bd0f38'
+cask "squirrelsql" do
+  version "4.2.0"
+  sha256 "d5d5f56b5d1e3b3dccff98c8c81f76555ec24c4f54234e4528d55066874680a2"
 
-  # sourceforge.net/squirrel-sql was verified as official when first introduced to the cask
-  url "https://downloads.sourceforge.net/squirrel-sql/1-stable/#{version}/squirrel-sql-#{version}-MACOSX-install.jar"
-  appcast 'https://sourceforge.net/projects/squirrel-sql/rss?path=/1-stable'
-  name 'SQuirrel SQL'
-  homepage 'http://www.squirrelsql.org/'
+  url "https://downloads.sourceforge.net/squirrel-sql/1-stable/#{version}/squirrel-sql-#{version}-MACOSX-install.jar",
+      verified: "sourceforge.net/squirrel-sql/"
+  name "SQuirrel SQL"
+  homepage "http://www.squirrelsql.org/"
 
   container type: :naked
 
@@ -14,7 +13,7 @@ cask 'squirrelsql' do
 
   preflight do
     # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-    File.open(installoptions, 'w') do |f|
+    File.open(installoptions, "w") do |f|
       f.print <<~EOS
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
         <AutomatedInstallation langpack="eng">
@@ -70,16 +69,20 @@ cask 'squirrelsql' do
   end
 
   postflight do
-    system_command '/usr/bin/java', args: ['-jar', "#{staged_path}/squirrel-sql-#{version}-MACOSX-install.jar", installoptions.to_s]
+    system_command "/usr/bin/java",
+                   args: ["-jar", "#{staged_path}/squirrel-sql-#{version}-MACOSX-install.jar", installoptions.to_s]
   end
 
-  uninstall_postflight do
-    system_command '/usr/bin/java', args: ['-jar', "#{appdir}/SQuirreLSQL.app/Uninstaller/uninstaller.jar", '-f', '-c']
+  uninstall_preflight do
+    system_command "/usr/bin/java",
+                   args: ["-jar", "#{appdir}/SQuirreLSQL.app/Uninstaller/uninstaller.jar", "-f", "-c"]
   end
 
-  zap trash: '~/.squirrel-sql'
+  uninstall delete: "#{appdir}/SQuirreLSQL.app"
+
+  zap trash: "~/.squirrel-sql"
 
   caveats do
-    depends_on_java '8+'
+    depends_on_java "8+"
   end
 end

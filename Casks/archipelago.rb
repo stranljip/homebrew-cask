@@ -1,11 +1,11 @@
-cask 'archipelago' do
-  version '3.10.0'
-  sha256 '81b5c48accf0e29a2612fbe0b7fc42de691cd07a77db2414f5d30d116971ab7e'
+cask "archipelago" do
+  version "3.16.0"
+  sha256 "d06a98597a980642b084a9d299cdd0040480967e08b885a4d4aad5af9814aa21"
 
   url "https://github.com/npezza93/archipelago/releases/download/v#{version}/Archipelago-#{version}.dmg"
-  appcast 'https://github.com/npezza93/archipelago/releases.atom'
-  name 'Archipelago'
-  homepage 'https://github.com/npezza93/archipelago'
+  name "Archipelago"
+  desc "Terminal emulator built on web technology"
+  homepage "https://github.com/npezza93/archipelago"
 
-  app 'Archipelago.app'
+  app "Archipelago.app"
 end

@@ -1,11 +1,16 @@
-cask 'katalon-studio' do
-  version '7.2.9'
-  sha256 'a84cd1541aea7ee70ff313d7e226027c77ce1b0df7d437d34e01d95d0242db55'
+cask "katalon-studio" do
+  version "8.0.0"
+  sha256 "243ea87851fd7a99b92368a3cc0b3c49e8d9543679e35bc9cf4b3160becbc133"
 
   url "https://download.katalon.com/#{version}/Katalon%20Studio.dmg"
-  appcast 'https://github.com/katalon-studio/katalon-studio/releases.atom'
-  name 'Katalon Studio'
-  homepage 'https://www.katalon.com/download/'
+  name "Katalon Studio"
+  desc "Test automation solution"
+  homepage "https://www.katalon.com/download/"
 
-  app 'Katalon Studio.app'
+  livecheck do
+    url "https://github.com/katalon-studio/katalon-studio"
+    regex(/^v?(\d+(?:\.\d+)*)$/i)
+  end
+
+  app "Katalon Studio.app"
 end

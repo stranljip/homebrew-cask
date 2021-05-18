@@ -1,14 +1,21 @@
-cask 'filebot' do
-  version '4.9.0'
-  sha256 'd8bc65a9eb2a1cdc97fd6125f3eadb978f2e178c2b0c65b354b20880af6d49a1'
+cask "filebot" do
+  version "4.9.3"
+  sha256 "208662e8e4c2a17fe62297e1f14ea2418382e22cd4e8babbe073c01e3396c735"
 
   url "https://get.filebot.net/filebot/FileBot_#{version}/FileBot_#{version}.app.tar.xz"
-  appcast 'https://app.filebot.net/update.xml'
-  name 'FileBot'
-  homepage 'https://www.filebot.net/'
+  name "FileBot"
+  desc "Tool for organizing and renaming movies, TV shows, anime or music"
+  homepage "https://www.filebot.net/"
 
-  app 'FileBot.app'
-  binary "#{appdir}/FileBot.app/Contents/MacOS/filebot.sh", target: 'filebot'
+  livecheck do
+    url "https://www.filebot.net/download.html"
+    regex(/href=.*?FileBot[._-]v?(\d+(?:\.\d+)+)\.app\.t/i)
+  end
 
-  zap trash: '~/Library/Preferences/net.filebot.ui.plist'
+  app "FileBot.app"
+  binary "#{appdir}/FileBot.app/Contents/MacOS/filebot.sh", target: "filebot"
+  binary "#{appdir}/FileBot.app/Contents/Resources/bash_completion.d/filebot_completion",
+         target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/filebot"
+
+  zap trash: "~/Library/Preferences/net.filebot.ui.plist"
 end

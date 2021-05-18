@@ -1,19 +1,19 @@
-cask 'poedit' do
-  if MacOS.version <= :mavericks
-    version '1.8.12'
-    sha256 '0aa721a0733eb04635685d280093aeef56b28c0baddf0fc265e1c7d448dbc615'
+cask "poedit" do
+  version "2.4.3,6086"
+  sha256 "54c31fb6d8edc537927cc09b049c257ad1e0b7d9245cecfa2dd006cfe2795f9d"
 
-    url "https://poedit.net/dl/Poedit-#{version}.zip"
-  else
-    version '2.3'
-    sha256 '85009ceba3ded8ea088c5c39d39e1b8dc1010821141a4680e68dfcc967bedc88'
+  url "https://download.poedit.net/Poedit-#{version.before_comma}.zip"
+  name "Poedit"
+  desc "Translation editor"
+  homepage "https://poedit.net/"
 
-    url "https://download.poedit.net/Poedit-#{version}.zip"
-    appcast "https://poedit.net/updates_v#{version.major}/osx/appcast"
+  livecheck do
+    url "https://poedit.net/updates_v#{version.major}/osx/appcast"
+    strategy :sparkle
   end
 
-  name 'Poedit'
-  homepage 'https://poedit.net/'
+  auto_updates true
+  depends_on macos: ">= :yosemite"
 
-  app 'Poedit.app'
+  app "Poedit.app"
 end

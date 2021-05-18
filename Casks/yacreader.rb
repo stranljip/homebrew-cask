@@ -1,14 +1,19 @@
-cask 'yacreader' do
-  version '9.6.2.1909283'
-  sha256 '92152f17b4ff072c3463ae045da5d232c2f59cb77267a0eeebb8af5de7d29214'
+cask "yacreader" do
+  version "9.8.0.2105165"
+  sha256 "d22a4107e895cee961bcef4dcbfb7061942baae13a3c0a0d790bb82199153430"
 
-  # github.com/YACReader/yacreader was verified as official when first introduced to the cask
-  url "https://github.com/YACReader/yacreader/releases/download/#{version.major_minor_patch}/YACReader-#{version}.MacOSX-Intel.dmg"
-  appcast 'https://github.com/YACReader/yacreader/releases.atom',
-          configuration: version.major_minor_patch
-  name 'YACReader'
-  homepage 'https://www.yacreader.com/'
+  url "https://github.com/YACReader/yacreader/releases/download/#{version.major_minor_patch}/YACReader-#{version}.MacOSX-Intel.dmg",
+      verified: "github.com/YACReader/yacreader/"
+  name "YACReader"
+  desc "Comic reader"
+  homepage "https://www.yacreader.com/"
 
-  app 'YACReader.app'
-  app 'YACReaderLibrary.app'
+  livecheck do
+    url :url
+    strategy :github_latest
+    regex(%r{href=.*?/YACReader[._-]v?(\d+(?:\.\d+)+)[._-]MacOSX[._-]Intel\.dmg}i)
+  end
+
+  app "YACReader.app"
+  app "YACReaderLibrary.app"
 end

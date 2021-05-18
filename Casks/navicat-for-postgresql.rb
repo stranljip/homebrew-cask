@@ -1,11 +1,16 @@
-cask 'navicat-for-postgresql' do
-  version '15.0.12'
-  sha256 '4721edb2916e52dea7349ddf4dc889cd0efb86d798747ada3515a86504f4ac5b'
+cask "navicat-for-postgresql" do
+  version "15.0.28"
+  sha256 :no_check
 
   url "http://download.navicat.com/download/navicat#{version.major_minor.no_dots}_pgsql_en.dmg"
-  appcast 'https://updater.navicat.com/mac/navicat_updates.php?appName=Navicat%20for%20PostgreSQL&appLang=en'
-  name 'Navicat for PostgreSQL'
-  homepage 'https://www.navicat.com/products/navicat-for-postgresql'
+  name "Navicat for PostgreSQL"
+  desc "Database administration and development tool for PostgreSQL"
+  homepage "https://www.navicat.com/products/navicat-for-postgresql"
 
-  app 'Navicat for PostgreSQL.app'
+  livecheck do
+    url "https://updater.navicat.com/mac/navicat_updates.php?appName=Navicat%20for%20PostgreSQL&appLang=en"
+    strategy :sparkle
+  end
+
+  app "Navicat for PostgreSQL.app"
 end

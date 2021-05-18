@@ -1,25 +1,30 @@
-cask 'hook' do
-  version '1.4'
-  sha256 '60b25c4c5c160ce1360c55700d5aaf6357fc76a931aeae86a8e2e2c0cfdd9564'
+cask "hook" do
+  version "3.1,2021.05"
+  sha256 "91cb06373dfa28b9274ea1274d67656d657377c3c0ad74f5924e626462cbde97"
 
-  # appcenter-filemanagement-distrib5ede6f06e.azureedge.net was verified as official when first introduced to the cask
-  url 'https://appcenter-filemanagement-distrib5ede6f06e.azureedge.net/9833b7ef-39a1-42cc-ab0e-6def214e04ad/Hook_productivity_app_1.4.dmg?sv=2018-03-28&sr=c&sig=k%2F17I2dBuZJZNFT7FTQHKGodiQ%2Fz2nBJade6WaoGook%3D&se=2020-03-14T10%3A39%3A59Z&sp=r'
-  appcast 'https://api.appcenter.ms/v0.1/public/sparkle/apps/a77a1a87-7d69-435d-90ea-7365b2f7bddb'
-  name 'Hook'
-  homepage 'https://hookproductivity.com/'
+  url "https://hookproductivity.com/wp-content/uploads/#{version.after_comma.major}/#{version.after_comma.minor}/Hook-productivity-app-#{version.before_comma}.dmg_.zip"
+  name "Hook"
+  desc "Link and retrieve key information"
+  homepage "https://hookproductivity.com/"
+
+  livecheck do
+    url :homepage
+    strategy :page_match do |page|
+      match = page.match(%r{href=.*?/(\d+)/(\d+)/Hook-productivity-app-(\d+(?:\.\d+)*(?:-\d+)*)\.dmg}i)
+      "#{match[3]},#{match[1]}.#{match[2]}"
+    end
+  end
 
   auto_updates true
-  depends_on macos: '>= :sierra'
 
-  app 'Hook.app'
+  app "Hook.app"
 
-  uninstall launchctl: 'com.cogsciapps.hookautolaunchhelper',
-            quit:      'com.cogsciapps.hook'
+  uninstall launchctl: "com.cogsciapps.hookautolaunchhelper",
+            quit:      "com.cogsciapps.hook"
 
-  zap trash:
-             [
-               '~/Library/Caches/com.cogsciapps.hook',
-               '~/Library/Logs/com.cogsciapps.hook',
-               '~/Library/Preferences/com.cogsciapps.hook.plist',
-             ]
+  zap trash: [
+    "~/Library/Caches/com.cogsciapps.hook",
+    "~/Library/Logs/com.cogsciapps.hook",
+    "~/Library/Preferences/com.cogsciapps.hook.plist",
+  ]
 end

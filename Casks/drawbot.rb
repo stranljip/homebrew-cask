@@ -1,12 +1,12 @@
-cask 'drawbot' do
-  version '3.123'
-  sha256 'ad395d11706ac4a621fb2f1e88131ad0e0d9bb8595f19d65253b2175fdd43707'
+cask "drawbot" do
+  version "3.127"
+  sha256 "a6d57aa71e098481f40de02260ccfe17e8601ed91c2a3a78cecdecefc9d3cce3"
 
-  # github.com/typemytype/drawbot was verified as official when first introduced to the cask
-  url "https://github.com/typemytype/drawbot/releases/download/#{version}/DrawBot.dmg"
-  appcast 'https://github.com/typemytype/drawbot/releases.atom'
-  name 'DrawBot'
-  homepage 'https://www.drawbot.com/'
+  url "https://github.com/typemytype/drawbot/releases/download/#{version}/DrawBot.dmg",
+      verified: "github.com/typemytype/drawbot/"
+  name "DrawBot"
+  desc "Write Python scripts to generate two-dimensional graphics"
+  homepage "https://www.drawbot.com/"
 
-  app 'DrawBot.app'
+  app "DrawBot.app"
 end

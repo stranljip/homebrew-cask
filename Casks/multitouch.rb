@@ -1,20 +1,25 @@
-cask 'multitouch' do
-  version '1.17.3'
-  sha256 '0c1126e52f8685487fefb3ec4f524eeda327ad496514ecc3174cafe9d84d8b10'
+cask "multitouch" do
+  version "1.24.11,138"
+  sha256 "cc937a1e6dded57402cf6a688bc66f209f0320e2f8f7fa69a09a1f77cdc93586"
 
-  url "https://multitouch.app/downloads/multitouch#{version}.dmg"
-  appcast 'https://www.multitouch.app/downloads/updates.xml'
-  name 'Multitouch'
-  homepage 'https://multitouch.app/'
+  url "https://multitouch.app/downloads/multitouch#{version.before_comma}.dmg"
+  name "Multitouch"
+  desc "Add more gestures for Trackpad and Magic Mouse"
+  homepage "https://multitouch.app/"
+
+  livecheck do
+    url "https://www.multitouch.app/downloads/updates.xml"
+    strategy :sparkle
+  end
 
   auto_updates true
-  depends_on macos: '>= :sierra'
+  depends_on macos: ">= :sierra"
 
-  app 'Multitouch.app'
+  app "Multitouch.app"
 
   zap trash: [
-               '~/Library/Preferences/com.brassmonkery.Multitouch',
-               '~/Library/Application Support/Multitouch',
-               '~/Library/Caches/com.brassmonkery.Multitouch',
-             ]
+    "~/Library/Preferences/com.brassmonkery.Multitouch",
+    "~/Library/Application Support/Multitouch",
+    "~/Library/Caches/com.brassmonkery.Multitouch",
+  ]
 end

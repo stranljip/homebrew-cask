@@ -1,14 +1,21 @@
-cask 'browserosaurus' do
-  version '9.2.0'
-  sha256 '0ae39544e13c2d2500e7e55587a366f7e2cabd5bfc3d6b605b56d52843f72bd4'
+cask "browserosaurus" do
+  version "14.1.2"
 
-  # github.com/will-stone/browserosaurus/ was verified as official when first introduced to the cask
-  url "https://github.com/will-stone/browserosaurus/releases/download/v#{version}/Browserosaurus-#{version}.dmg"
-  appcast 'https://github.com/will-stone/browserosaurus/releases.atom'
-  name 'Browserosaurus'
-  homepage 'https://will-stone.github.io/browserosaurus/'
+  if Hardware::CPU.intel?
+    sha256 "1cf01c5cfe9a49013b777bee0bbc8a2ff1099bd4a252b25b3341dbb24a2c796c"
+    url "https://github.com/will-stone/browserosaurus/releases/download/v#{version}/Browserosaurus-darwin-x64-#{version}.zip",
+        verified: "github.com/will-stone/browserosaurus/"
+  else
+    sha256 "7a7ed77fcc6aba7074542a427c8479d5d86334df1825b7670d1a699f62275284"
+    url "https://github.com/will-stone/browserosaurus/releases/download/v#{version}/Browserosaurus-darwin-arm64-#{version}.zip",
+        verified: "github.com/will-stone/browserosaurus/"
+  end
+
+  name "Browserosaurus"
+  desc "Open-source browser prompter"
+  homepage "https://wstone.io/browserosaurus/"
 
   auto_updates true
 
-  app 'Browserosaurus.app'
+  app "Browserosaurus.app"
 end

@@ -1,13 +1,18 @@
-cask 'kodelife' do
-  version '0.8.10.122'
-  sha256 '3bacdb848a1d1eca4b299123d125feb76dc710d1108e1f61bef9fbcc991cdcaa'
+cask "kodelife" do
+  version "0.9.9,148"
+  sha256 "cab6dabc30bf0a1fef5b16327c964896a12fefcad91ba987acbb746e6214614c"
 
-  url "https://hexler.net/pub/kodelife/kodelife-#{version}-macos.zip"
-  appcast 'https://hexler.net/pub/kodelife/appcast.hex'
-  name 'KodeLife'
-  homepage 'https://hexler.net/software/kodelife'
+  url "https://hexler.net/pub/kodelife/kodelife-#{version.before_comma}.#{version.after_comma}-macos.dmg"
+  name "KodeLife"
+  desc "Real-time GPU shader editor"
+  homepage "https://hexler.net/software/kodelife"
+
+  livecheck do
+    url "https://hexler.net/pub/kodelife/appcast.xml"
+    strategy :sparkle
+  end
 
   auto_updates true
 
-  app 'KodeLife.app'
+  app "KodeLife.app"
 end

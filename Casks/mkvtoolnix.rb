@@ -1,18 +1,24 @@
-cask 'mkvtoolnix' do
-  version '44.0.0'
-  sha256 '671250c9d10e993c99d5f475bc702412b0fff2a1db7064a821f234d728fa864c'
+cask "mkvtoolnix" do
+  version "56.1.0"
+  sha256 "fd64c8691093e8edc5932d37c34431a577dbd003ca45f015471584c8bca9e4c2"
 
   url "https://mkvtoolnix.download/macos/MKVToolNix-#{version}.dmg"
-  appcast 'https://www.bunkus.org/blog/feed/'
-  name 'MKVToolNix'
-  homepage 'https://mkvtoolnix.download/'
+  name "MKVToolNix"
+  desc "Set of tools to create, alter and inspect Matroska files (MKV)"
+  homepage "https://mkvtoolnix.download/"
 
-  conflicts_with formula: 'mkvtoolnix'
-  depends_on macos: '>= :mojave'
+  livecheck do
+    url "https://mkvtoolnix.download/macos/"
+    strategy :page_match
+    regex(%r{href=.*?/MKVToolNix-(\d+(?:\.\d+)*)\.dmg}i)
+  end
 
-  app "MKVToolNix-#{version}.app"
-  binary "#{appdir}/MKVToolNix-#{version}.app/Contents/MacOS/mkvextract"
-  binary "#{appdir}/MKVToolNix-#{version}.app/Contents/MacOS/mkvinfo"
-  binary "#{appdir}/MKVToolNix-#{version}.app/Contents/MacOS/mkvmerge"
-  binary "#{appdir}/MKVToolNix-#{version}.app/Contents/MacOS/mkvpropedit"
+  conflicts_with formula: "mkvtoolnix"
+  depends_on macos: ">= :catalina"
+
+  app "MKVToolNix-#{version.major_minor_patch}.app"
+  binary "#{appdir}/MKVToolNix-#{version.major_minor_patch}.app/Contents/MacOS/mkvextract"
+  binary "#{appdir}/MKVToolNix-#{version.major_minor_patch}.app/Contents/MacOS/mkvinfo"
+  binary "#{appdir}/MKVToolNix-#{version.major_minor_patch}.app/Contents/MacOS/mkvmerge"
+  binary "#{appdir}/MKVToolNix-#{version.major_minor_patch}.app/Contents/MacOS/mkvpropedit"
 end

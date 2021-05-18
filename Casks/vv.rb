@@ -1,16 +1,16 @@
-cask 'vv' do
-  version '2.2.0'
-  sha256 'c8ad6f262aff9a72f9515a7f6ce6ec9eb5c7e46710158efe4953b30340bdc65f'
+cask "vv" do
+  version "2.4.2"
+  sha256 "f0cb4b2a61b93ce5c4e14059e6e6cef6761db14dc2eb97a8f4b3811d941567c5"
 
   url "https://github.com/vv-vim/vv/releases/download/v#{version}/VV-#{version}.dmg"
-  appcast 'https://github.com/vv-vim/vv/releases.atom'
-  name 'VV'
-  homepage 'https://github.com/vv-vim/vv'
+  name "VV"
+  desc "Neovim client"
+  homepage "https://github.com/vv-vim/vv"
 
-  depends_on formula: 'neovim'
+  depends_on formula: "neovim"
 
-  app 'VV.app'
+  app "VV.app"
   binary "#{appdir}/VV.app/Contents/Resources/bin/vv"
 
-  zap trash: '~/Library/Application Support/VV'
+  zap trash: "~/Library/Application Support/VV"
 end

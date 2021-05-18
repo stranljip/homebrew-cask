@@ -1,33 +1,41 @@
-cask 'metasploit' do
-  version '5.0.81,20200319103545'
-  sha256 '3dc14d42be1de4b5021ca9c44f2886cb26ff3fd11caddc464a6e2f8c2c8e9971'
+cask "metasploit" do
+  version "6.0.45,20210516102730"
+  sha256 "787a85d02ada66b06a4b45d82930f3b5813441200dccd5f64b6ca11992a7709d"
 
-  url "https://osx.metasploit.com/metasploit-framework-#{version.before_comma}+#{version.after_comma}-1rapid7-1.pkg"
-  appcast 'https://osx.metasploit.com/LATEST'
-  name 'Metasploit Framework'
-  homepage 'https://www.metasploit.com/'
+  url "https://osx.metasploit.com/metasploit-framework-#{version.before_comma}%2B#{version.after_comma}-1rapid7-1.pkg"
+  name "Metasploit Framework"
+  desc "Penetration testing framework"
+  homepage "https://www.metasploit.com/"
 
-  depends_on formula: 'nmap'
+  livecheck do
+    url "https://osx.metasploit.com/LATEST"
+    strategy :page_match do |page|
+      match = page.match(/metasploit-framework-(\d+(?:\.\d+)*)\+(\d+)-1rapid7-1\.pkg/i)
+      "#{match[1]},#{match[2]}"
+    end
+  end
 
-  pkg "metasploit-framework-#{version.before_comma} #{version.after_comma}-1rapid7-1.pkg"
-  binary '/opt/metasploit-framework/bin/msfbinscan'
-  binary '/opt/metasploit-framework/bin/msfconsole'
-  binary '/opt/metasploit-framework/bin/msfd'
-  binary '/opt/metasploit-framework/bin/msfdb'
-  binary '/opt/metasploit-framework/bin/msfelfscan'
-  binary '/opt/metasploit-framework/bin/msfmachscan'
-  binary '/opt/metasploit-framework/bin/msfpescan'
-  binary '/opt/metasploit-framework/bin/msfrop'
-  binary '/opt/metasploit-framework/bin/msfrpc'
-  binary '/opt/metasploit-framework/bin/msfrpcd'
-  binary '/opt/metasploit-framework/bin/msfvenom'
+  depends_on formula: "nmap"
+
+  pkg "metasploit-framework-#{version.before_comma}+#{version.after_comma}-1rapid7-1.pkg"
+  binary "/opt/metasploit-framework/bin/msfbinscan"
+  binary "/opt/metasploit-framework/bin/msfconsole"
+  binary "/opt/metasploit-framework/bin/msfd"
+  binary "/opt/metasploit-framework/bin/msfdb"
+  binary "/opt/metasploit-framework/bin/msfelfscan"
+  binary "/opt/metasploit-framework/bin/msfmachscan"
+  binary "/opt/metasploit-framework/bin/msfpescan"
+  binary "/opt/metasploit-framework/bin/msfrop"
+  binary "/opt/metasploit-framework/bin/msfrpc"
+  binary "/opt/metasploit-framework/bin/msfrpcd"
+  binary "/opt/metasploit-framework/bin/msfvenom"
 
   uninstall script: {
-                      executable: '/opt/metasploit-framework/bin/msfremove',
-                      input:      ['y'],
-                      sudo:       true,
-                    },
-            rmdir:  '/opt/metasploit-framework'
+    executable: "/opt/metasploit-framework/bin/msfremove",
+    input:      ["y"],
+    sudo:       true,
+  },
+            rmdir:  "/opt/metasploit-framework"
 
-  zap trash: '~/.msf4'
+  zap trash: "~/.msf4"
 end
